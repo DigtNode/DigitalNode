@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalNode - WoW Forever Gold Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #060608;
+            --bg-card: rgba(16, 14, 10, 0.75);
+            --bg-glass: rgba(14, 12, 9, 0.82);
+            --border-gold: rgba(212, 175, 55, 0.28);
+            --border-gold-hover: rgba(212, 175, 55, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f7e9b0;
+            --gold-dark: #8c711f;
+            --text-main: #f4f4f6;
+            --text-muted: #94a3b8;
+            --shadow-gold: 0 0 35px rgba(212, 175, 55, 0.15);
+            --shadow-glass: 0 16px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(140, 113, 31, 0.06) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(10, 10, 12, 0.9) 0%, #030304 100%);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 36px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            background: rgba(8, 7, 10, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            font-size: 20px;
+            color: #050505;
+        }
+
+        .brand-name {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            background: linear-gradient(135deg, #ffffff 20%, var(--gold-light) 60%, var(--gold-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .discord-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid var(--border-gold);
+            padding: 8px 16px;
+            border-radius: 12px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .discord-btn:hover {
+            border-color: var(--gold-primary);
+            background: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .discord-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--gold-primary);
+        }
+
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .store-banner-top {
+            text-align: center;
+            margin-bottom: -10px;
+        }
+
+        .forever-gold-badge {
+            display: inline-block;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--gold-light);
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid var(--border-gold);
+            padding: 8px 24px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .servers-section {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .section-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+
+        .section-heading::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.4), transparent);
+        }
+
+        .servers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .server-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .server-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .server-card:hover {
+            border-color: var(--border-gold-hover);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-gold), 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .server-card:hover::before {
+            opacity: 1;
+        }
+
+        .server-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 1;
+        }
+
+        .server-name {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+        }
+
+        .server-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .server-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: #4ade80;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #4ade80;
+        }
+
+        .server-pricing {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+            z-index: 1;
+        }
+
+        .price-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .price-value {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gold-light);
+            font-family: 'Cinzel', serif;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .bottom-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 10px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .hero-section {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 20%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--border-gold-hover);
+            transform: translateY(-2px);
+        }
+
+        .feature-card h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* Payment Showcase Styling with Real SVG Icons */
+        .payment-methods-showcase {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            margin-top: 10px;
+        }
+
+        .pay-title {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .pay-badges-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .pay-badge-item {
+            background: rgba(11, 15, 25, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .pay-badge-item:hover {
+            border-color: var(--gold-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .pay-icon-svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--gold-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pay-icon-svg svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Modal styling */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(3, 3, 5, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 16px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-gold-hover);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 480px;
+            padding: 36px;
+            box-shadow: var(--shadow-glass), var(--shadow-gold);
+            transform: scale(0.92) translateY(15px);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            backdrop-filter: blur(24px);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-gold);
+            color: var(--text-muted);
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            font-size: 18px;
+        }
+
+        .modal-close:hover {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--text-main);
+            border-color: var(--gold-primary);
+        }
+
+        .modal-title {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .modal-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(6, 6, 8, 0.75);
+            border: 1px solid var(--border-gold);
+            border-radius: 14px;
+            padding: 14px 18px;
+            color: var(--text-main);
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            background: rgba(6, 6, 8, 0.9);
+        }
+
+        .order-summary {
+            background: rgba(6, 6, 8, 0.5);
+            border: 1px solid var(--border-gold);
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .summary-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .summary-total {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold-light);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary), var(--gold-dark));
+            color: #050505;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            letter-spacing: 1px;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .submit-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.45);
+        }
+
+        footer {
+            text-align: center;
+            padding: 28px;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            color: var(--text-muted);
+            font-size: 13px;
+            background: var(--bg-deep);
+        }
+
+        @media (max-width: 900px) {
+            .servers-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            header {
+                padding: 16px 20px;
+            }
+            main {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="brand">
+            <div class="brand-logo">DN</div>
+            <div class="brand-name">DigitalNode</div>
+        </a>
+        <div class="header-actions">
+            <a href="https://discord.gg/fuxxMCrZWw" target="_blank" rel="noopener noreferrer" class="discord-btn">
+                <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                Discord
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Центральный бейдж WoW Forever Gold вверху -->
+        <div class="store-banner-top">
+            <span class="forever-gold-badge">WoW Forever Gold</span>
+        </div>
+
+        <section class="servers-section">
+            <h2 class="section-heading">Select Realm & Faction</h2>
+            <div class="servers-grid" id="serversGrid"></div>
+        </section>
+
+        <div class="bottom-section">
+            <section class="hero-section">
+                <h1 class="hero-title">Secure WoW Forever Gold</h1>
+                <p class="hero-subtitle">Fast delivery, proprietary manual farming methods, and absolute security for every transaction.</p>
+            </section>
+
+            <section class="features-grid">
+                <div class="feature-card">
+                    <h4>Private Farm</h4>
+                    <p>100% hand-farmed gold by our experienced team without bots or automated tools.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Instant Delivery</h4>
+                    <p>Lightning-fast dispatch right after payment confirmation.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Top Security</h4>
+                    <p>Strict confidentiality protocols and safe in-game trade procedures.</p>
+                </div>
+            </section>
+
+            <!-- Payment Methods Showcase with Real SVG Icons -->
+            <div class="payment-methods-showcase">
+                <p class="pay-title">Secured Checkout & Supported Payments</p>
+                <div class="pay-badges-grid">
+                    <div class="pay-badge-item">
+                        <div class="pay-icon-svg">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                        </div>
+                        <span>Visa / Mastercard</span>
+                    </div>
+                    <div class="pay-badge-item">
+                        <div class="pay-icon-svg">
+                            <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.95 5.05c.57-.69 0.96-1.65.85-2.61-.84.04-1.87.56-2.46 1.25-.53.61-.99 1.58-.87 2.53.95.07 1.91-.47 2.48-1.17z"/></svg>
+                        </div>
+                        <span>Apple Pay</span>
+                    </div>
+                    <div class="pay-badge-item">
+                        <div class="pay-icon-svg">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                        </div>
+                        <span>Google Pay</span>
+                    </div>
+                    <div class="pay-badge-item">
+                        <div class="pay-icon-svg">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <span>Crypto (USDT, BTC, TON, SOL)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Popup -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <h3 class="modal-title" id="modalServerTitle">Buy Gold</h3>
+            <p class="modal-subtitle">Enter your desired gold amount and in-game character nickname.</p>
+            
+            <div class="form-group">
+                <label class="form-label">Gold Amount</label>
+                <input type="number" id="goldAmount" class="form-input" value="50" min="1" step="1">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Character Nickname</label>
+                <input type="text" id="charNickname" class="form-input" placeholder="e.g. Savix Forever">
+            </div>
+
+            <div class="order-summary">
+                <span class="summary-label">Total Price:</span>
+                <span class="summary-total" id="totalPrice">$0.00</span>
+            </div>
+
+            <button class="submit-btn" id="proceedBtn">Proceed to Checkout &rarr;</button>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 DigitalNode. All rights reserved.
+    </footer>
+
+    <script>
+        const servers = [
+            { id: 1, name: "PvP - Alliance [US]", basePrice: 1.82 },
+            { id: 2, name: "PvP - Horde [US]", basePrice: 1.99 },
+            { id: 3, name: "Roleplay PvP - Alliance [US]", basePrice: 4.52 },
+            { id: 4, name: "Roleplay PvP - Horde [US]", basePrice: 4.25 },
+            { id: 5, name: "Normal - Alliance [US]", basePrice: 1.65 },
+            { id: 6, name: "Normal - Horde [US]", basePrice: 1.55 },
+            { id: 7, name: "Hardcore - Alliance [US]", basePrice: 5.10 },
+            { id: 8, name: "Hardcore - Horde [US]", basePrice: 4.80 }
+        ];
+
+        const markup = 1.25; // +25% markup
+        let selectedServer = null;
+
+        const serversGrid = document.getElementById('serversGrid');
+        const orderModal = document.getElementById('orderModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalServerTitle = document.getElementById('modalServerTitle');
+        const goldAmountInput = document.getElementById('goldAmount');
+        const charNicknameInput = document.getElementById('charNickname');
+        const totalPriceEl = document.getElementById('totalPrice');
+        const proceedBtn = document.getElementById('proceedBtn');
+
+        function renderServers() {
+            serversGrid.innerHTML = servers.map(server => {
+                const finalPricePerUnit = (server.basePrice * markup).toFixed(2);
+                return `
+                    <div class="server-card" onclick="openModal(${server.id})">
+                        <div class="server-info">
+                            <span class="server-name">${server.name}</span>
+                            <span class="server-status">Available stock</span>
+                        </div>
+                        <div class="server-pricing">
+                            <span class="price-label">Price per 1 Gold</span>
+                            <span class="price-value">$${finalPricePerUnit}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function openModal(serverId) {
+            selectedServer = servers.find(s => s.id === serverId);
+            if (!selectedServer) return;
+
+            modalServerTitle.textContent = `Buy Gold on ${selectedServer.name}`;
+            goldAmountInput.value = 50;
+            charNicknameInput.value = '';
+            updateTotal();
+            orderModal.classList.add('active');
+        }
+
+        function closeOrderModal() {
+            orderModal.classList.remove('active');
+            selectedServer = null;
+        }
+
+        function updateTotal() {
+            if (!selectedServer) return;
+            const amount = parseFloat(goldAmountInput.value) || 0;
+            const unitPrice = selectedServer.basePrice * markup;
+            const total = amount * unitPrice;
+            totalPriceEl.textContent = `$${total.toFixed(2)}`;
+        }
+
+        goldAmountInput.addEventListener('input', updateTotal);
+        closeModal.addEventListener('click', closeOrderModal);
+        orderModal.addEventListener('click', (e) => {
+            if (e.target === orderModal) closeOrderModal();
+        });
+
+        proceedBtn.addEventListener('click', () => {
+            const amount = goldAmountInput.value;
+            const nickname = charNicknameInput.value.trim();
+
+            if (!nickname) {
+                charNicknameInput.style.borderColor = '#ef4444';
+                setTimeout(() => charNicknameInput.style.borderColor = 'var(--border-gold)', 2000);
+                charNicknameInput.focus();
+                return;
+            }
+
+            if (!amount || amount <= 0) {
+                goldAmountInput.style.borderColor = '#ef4444';
+                setTimeout(() => goldAmountInput.style.borderColor = 'var(--border-gold)', 2000);
+                goldAmountInput.focus();
+                return;
+            }
+
+            const uniqueId = 'ord_' + Math.random().toString(36).substr(2, 9);
+            const unitPrice = selectedServer.basePrice * markup;
+            const total = (amount * unitPrice).toFixed(2);
+
+            const checkoutUrl = `checkout.html?ref=${uniqueId}&server=${encodeURIComponent(selectedServer.name)}&amount=${amount}&nick=${encodeURIComponent(nickname)}&total=${total}`;
+            
+            window.location.href = checkoutUrl;
+        });
+
+        renderServers();
+    </script>
+</body>
+</html>
