@@ -28,6 +28,7 @@
         }
 
         body {
+
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-deep);
             color: var(--text-main);
@@ -809,5 +810,31 @@
 
         renderServers();
     </script>
+<!-- Остальной HTML и ваши стили -->
+    
+    <script>
+        async function fetchAndUpdatePrices() {
+            try {
+                let response = await fetch('http://localhost:8000/api/prices');
+                let data = await response.json();
+                
+                if (data.status === 'success' && data.prices) {
+                    console.log("Prices updated from server:", data.prices);
+                    
+                    for (const [serverName, price] of Object.entries(data.prices)) {
+                        let priceElement = document.querySelector(`[data-server="${serverName}"]`);
+                        if (priceElement) {
+                            priceElement.textContent = `1 Gold = ${price}`;
+                        }
+                    }
+                }
+            } catch (e) {
+                console.error("Could not fetch prices from backend:", e);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchAndUpdatePrices);
+    </script>
+</html>
 </body>
 </html>
