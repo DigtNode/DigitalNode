@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed - DigitalNode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #060608;
+            --bg-card: rgba(16, 14, 10, 0.75);
+            --bg-glass: rgba(14, 12, 9, 0.82);
+            --border-gold: rgba(212, 175, 55, 0.28);
+            --border-error: rgba(239, 68, 68, 0.4);
+            --gold-primary: #d4af37;
+            --gold-light: #f7e9b0;
+            --gold-dark: #8c711f;
+            --error-primary: #ef4444;
+            --text-main: #f4f4f6;
+            --text-muted: #94a3b8;
+            --shadow-glass: 0 16px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.06) 0%, rgba(6, 6, 8, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .fail-container {
+            width: 100%;
+            max-width: 540px;
+            padding: 24px;
+        }
+
+        .fail-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-error);
+            border-radius: 20px;
+            padding: 48px 36px;
+            text-align: center;
+            box-shadow: var(--shadow-glass);
+            position: relative;
+        }
+
+        .fail-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid var(--error-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+        }
+
+        .fail-icon {
+            font-size: 38px;
+            color: var(--error-primary);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .btn-retry {
+            display: inline-block;
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 100%);
+            color: #060608;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-retry:hover {
+            background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-light) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fail-container">
+        <div class="fail-card">
+            <div class="fail-icon-wrapper">
+                <span class="fail-icon">✕</span>
+            </div>
+            <h1>Payment Failed</h1>
+            <p>Unfortunately, your transaction could not be completed. The payment was either cancelled or declined. No funds were charged from your wallet.</p>
+            <a href="https://digtnode.com" class="btn-retry">Try Again</a>
+        </div>
+    </div>
+
+</body>
+</html>
