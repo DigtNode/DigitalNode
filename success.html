@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - DigitalNode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #060608;
+            --bg-card: rgba(16, 14, 10, 0.75);
+            --bg-glass: rgba(14, 12, 9, 0.82);
+            --border-gold: rgba(212, 175, 55, 0.28);
+            --border-gold-hover: rgba(212, 175, 55, 0.7);
+            --gold-primary: #d4af37;
+            --gold-light: #f7e9b0;
+            --gold-dark: #8c711f;
+            --text-main: #f4f4f6;
+            --text-muted: #94a3b8;
+            --shadow-gold: 0 0 35px rgba(212, 175, 55, 0.15);
+            --shadow-glass: 0 16px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Декоративный задний фон */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(6, 6, 8, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .success-container {
+            width: 100%;
+            max-width: 540px;
+            padding: 24px;
+        }
+
+        .success-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-gold);
+            border-radius: 20px;
+            padding: 48px 36px;
+            text-align: center;
+            box-shadow: var(--shadow-glass), var(--shadow-gold);
+            position: relative;
+        }
+
+        .success-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--gold-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 28px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+            animation: pulse-gold 2s infinite ease-in-out;
+        }
+
+        .success-icon {
+            font-size: 38px;
+            color: var(--gold-light);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .highlight {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .btn-home {
+            display: inline-block;
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 100%);
+            color: #060608;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-home:hover {
+            background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-light) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-icon-wrapper">
+                <span class="success-icon">✓</span>
+            </div>
+            <h1>Payment Successful!</h1>
+            <p>Thank you for your purchase. Your transaction has been successfully processed. Our system and Discord bot are already preparing your order for delivery.</p>
+            <a href="https://digtnode.com" class="btn-home">Return to DigitalNode</a>
+        </div>
+    </div>
+
+</body>
+</html>
