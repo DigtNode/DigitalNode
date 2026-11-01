@@ -735,18 +735,19 @@
 
         function renderServers() {
             serversGrid.innerHTML = servers.map(server => {
-                const finalPricePerUnit = (server.basePrice * markup).toFixed(2);
-                return `
-                    <div class="server-card" onclick="openModal(${server.id})">
-                        <div class="server-info">
-                            <span class="server-name">${server.name}</span>
-                            <span class="server-status">Available stock</span>
-                        </div>
-                        <div class="server-pricing">
-                            <span class="price-label">Price per 1 Gold</span>
-                            <span class="price-value">$${finalPricePerUnit}</span>
-                        </div>
-                    </div>
+        const finalPricePerUnit = (server.basePrice * markup).toFixed(2);
+        return `
+            <div class="server-card" onclick="openModal(${server.id})">
+                <div class="server-info">
+                    <span class="server-name">${server.name}</span>
+                    <span class="server-status">Available stock</span>
+                </div>
+                <div class="server-pricing">
+                    <span class="price-label">Price per 1 Gold</span>
+                    <!-- Добавили data-server для точного поиска -->
+                    <span class="price-value" data-server="${server.name}">$${finalPricePerUnit}</span>
+                </div>
+            </div>
                 `;
             }).join('');
         }
@@ -813,28 +814,31 @@
 <!-- Остальной HTML и ваши стили -->
     
     <script>
-        async function fetchAndUpdatePrices() {
-            try {
-                let response = await fetch('http://localhost:8000/api/prices');
-                let data = await response.json();
+    async function fetchAndUpdatePrices() {
+        try {
+            // Замените IP_ВАШЕГО_VPS на IP вашего сервера (например, http://162.35.30.239:8000/api/prices)
+            let response = await fetch('http://162.35.30.239:8000/api/prices');
+            let data = await response.json();
+            
+            if (data.status === 'success' && data.prices) {
+                console.log("Prices updated from VPS:", data.prices);
                 
-                if (data.status === 'success' && data.prices) {
-                    console.log("Prices updated from server:", data.prices);
-                    
-                    for (const [serverName, price] of Object.entries(data.prices)) {
-                        let priceElement = document.querySelector(`[data-server="${serverName}"]`);
-                        if (priceElement) {
-                            priceElement.textContent = `1 Gold = ${price}`;
-                        }
+                // Проходим по всем ценам, которые прислал бэкенд из базы store.db
+                for (const [serverName, price] of Object.entries(data.prices)) {
+                    let priceElement = document.querySelector(`[data-server="${serverName}"]`);
+                    if (priceElement) {
+                        priceElement.textContent = price; // Обновляем цену на лету
                     }
                 }
-            } catch (e) {
-                console.error("Could not fetch prices from backend:", e);
             }
+        } catch (e) {
+            console.error("Could not fetch prices from VPS backend:", e);
         }
+    }
 
-        document.addEventListener('DOMContentLoaded', fetchAndUpdatePrices);
-    </script>
+    // Запускаем обновление при загрузке страницы
+    document.addEventListener('DOMContentLoaded', fetchAndUpdatePrices);
+</script>
 </html>
 </body>
 </html>
