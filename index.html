@@ -816,7 +816,7 @@
     <script>
     async function fetchAndUpdatePrices() {
         try {
-            let response = await fetch('https://api.digtnode.com/api/prices');
+            let response = await fetch('./prices.json');
             let data = await response.json();
             
             if (data.status === 'success' && data.prices) {
