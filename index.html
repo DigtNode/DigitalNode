@@ -816,8 +816,7 @@
     <script>
     async function fetchAndUpdatePrices() {
         try {
-            // Замените IP_ВАШЕГО_VPS на IP вашего сервера (например, http://162.35.30.239:8000/api/prices)
-            let response = await fetch('http://162.35.30.239:8000/api/prices');
+            let response = await fetch('https://api.digtnode.com/api/prices');
             let data = await response.json();
             
             if (data.status === 'success' && data.prices) {
